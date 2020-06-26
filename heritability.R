@@ -1,10 +1,11 @@
 library(tidyverse)
 library(ggplot2)
 
-gwas = "ra2"
-
-herit = read_tsv(sprintf("../data/found_variants_in_sumstat/heritability/%s.results", gwas))
+gwas = ""
+folder = "../data/mfactorization/all_variants_from_credible_sets/heritability/"
+herit = read_tsv(file.path(folder, sprintf("%s.results", gwas)))
 nrow(herit)
+
 herit = arrange(herit, Category)
 
 categories = strsplit(herit$Category, split = "L2_0")
@@ -20,3 +21,4 @@ ggplot(herit, aes(x=Category, y = Enrichment))+
   ggplot2::ggtitle(paste("GWAS", toupper(gwas))) +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
 
+# ggsave(file.path(folder, paste0(gwas, ".png")))

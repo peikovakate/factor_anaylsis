@@ -20,7 +20,7 @@ factors_tbl_input = args$factors
 # output_dir = "../data/found_variants_in_sumstat/factor_annotations/10/"
 # factors_tbl_input = "../data/found_variants_in_sumstat/eqtl_factors_for_cont_annot.tsv"
 
-dir.create(output_dir)
+dir.create(output_dir, recursive = T)
 
 eqtl_factors = read_tsv(factors_tbl_input)
 chain <- import.chain(chain_file)
